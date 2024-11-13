@@ -21,3 +21,22 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+
+
+
+
+
+Create new project:
+npx create-react-app projectname
+
+Start project:
+npm start
+
+
+install nodemodulus:
+npm i
+
+install any other library
+npm i library-name
+

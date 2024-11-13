@@ -1,24 +1,19 @@
 import logo from "./logo.svg";
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-
+import Button from "react-bootstrap/Button";
+import { Header } from "./components/header";
+import ProfilePic from "./logo.svg";
+import UserCard from "./components/userCard";
+// import  router  from "./router";
+import {  RouterProvider } from "react-router-dom";
+import { router } from "./router";
 function App() {
+
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          hello world
-        </a>
-      </header>
+      <RouterProvider router={router} />
     </div>
   );
 }
