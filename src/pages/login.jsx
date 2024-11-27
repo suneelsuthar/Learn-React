@@ -4,14 +4,14 @@ import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
-import {useNavigate} from 'react-router-dom'
+import { useNavigate } from "react-router-dom";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../firebase";
-
+import { Modal } from "../components/Modal";
 const Login = () => {
   const [email, setemail] = useState("");
   const [password, setpassword] = useState("");
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const signin = () => {
     signInWithEmailAndPassword(auth, email, password)
@@ -19,7 +19,12 @@ const Login = () => {
         // Signed in
         const user = userCredential.user;
         console.log(user);
-        navigate('home')
+        navigate("home", {
+          state: {
+            id: "0938450pvlasjfal",
+            name: "xafsa",
+          },
+        });
         // ...
       })
       .catch((error) => {
@@ -32,6 +37,10 @@ const Login = () => {
   return (
     <div>
       <Container>
+        <Modal>
+          <h1>hello box from login</h1>
+        </Modal>
+
         <Form>
           <h1>Login page</h1>
           <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
@@ -59,7 +68,7 @@ const Login = () => {
             Login
           </Button>
 
-          <p onClick={()=>navigate("signup")}>Dont have an account?</p>
+          <p onClick={() => navigate("signup")}>Dont have an account?</p>
         </Form>
       </Container>
     </div>

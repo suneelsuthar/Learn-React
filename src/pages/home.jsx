@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate ,useLocation} from "react-router-dom";
 import { Header } from "../components/header";
 import { PriceCard } from "../components/priceCard";
 import Button from "react-bootstrap/Button";
@@ -33,7 +33,7 @@ import { db, storage } from "../firebase";
 import MyContext from "../context/MyContext";
 // import {  deleteObject } from "firebase/storage";
 
-const Home = () => {
+const Home = (props) => {
   const [validated, setValidated] = useState(false);
   const [firstname, setfirstname] = useState("");
   const [lastname, setlastname] = useState("");
@@ -43,10 +43,11 @@ const Home = () => {
   const [zip, setzip] = useState("");
   const [cities, setcities] = useState([]);
   const [url, seturl] = useState("");
-  const { sharedState, setSharedState, value, setvalue } = useContext(MyContext);
+  const location = useLocation()
+  const { sharedState, setSharedState, value, setvalue,user,logout } = useContext(MyContext);
 
 
-  console.log(value)
+  console.log("====home user===+>",location.state.id)
 
 
 
@@ -169,6 +170,7 @@ const Home = () => {
   };
   return (
     <div>
+      
       <Header title="Home Page" />
       <br />
       <br />

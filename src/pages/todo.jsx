@@ -13,10 +13,12 @@ const Todo = () => {
   const [show, setShow] = useState(false);
   const [newtext, setnewtext] = useState("");
   const [selected, setselected] = useState();
-  const { updateItem, deleteItem, addItem } = useContext(MyContext);
+  const {} = useContext(MyContext);
 
   const getlist = () => {
-    fetch("https://dummyjson.com/todos")
+    fetch("https://dummyjson.com/todos", {
+      method: "GET",
+    })
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
@@ -28,52 +30,52 @@ const Todo = () => {
     getlist();
   }, []);
 
-//   const addItem = () => {
-//     fetch("https://dummyjson.com/todos/add", {
-//       method: "POST",
-//       headers: {
-//         "Content-Type": "application/json",
-//       },
-//       body: JSON.stringify({
-//         todo: text,
-//         completed: true,
-//         userId: 1,
-//       }),
-//     })
-//       .then((res) => {
-//         console.log("item added");
-//       })
-//       .catch((err) => {
-//         console.log(err);
-//       });
-//   };
+  const addItem = () => {
+    fetch("https://dummyjson.com/todos/add", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        todo: text,
+        completed: true,
+        userId: 1,
+      }),
+    })
+      .then((res) => {
+        console.log("item added");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
-//   const updateItem = () => {
-//     /* updating completed status of todo with id 1 */
-//     fetch(`https://dummyjson.com/todos/${selected.id}`, {
-//       method: "PUT" /* or PATCH */,
-//       headers: { "Content-Type": "application/json" },
-//       body: JSON.stringify({
-//         completed: true,
-//         todo: newtext,
-//       }),
-//     })
-//       .then((res) => res.json())
-//       .then(console.log);
-//     setShow(false);
-//   };
-//   const deleteItem = (id) => {
-//     fetch(`https://dummyjson.com/todos/${id}`, {
-//       method: "DELETE",
-//     })
-//       .then((res) => res.json())
-//       .then(console.log("deleted succesfully"));
-//   };
+  const updateItem = () => {
+    /* updating completed status of todo with id 1 */
+    fetch(`https://dummyjson.com/todos/${selected.id}`, {
+      method: "PUT" /* or PATCH */,
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        completed: true,
+        todo: newtext,
+      }),
+    })
+      .then((res) => res.json())
+      .then(console.log);
+    setShow(false);
+  };
+  const deleteItem = (id) => {
+    fetch(`https://dummyjson.com/todos/${id}`, {
+      method: "DELETE",
+    })
+      .then((res) => res.json())
+      .then(console.log("deleted succesfully"));
+  };
 
-  //   const updateSelected = (value) => {
-  //     selected.todo = value;
-  //     setselected({ ...selected });
-  //   };
+  const updateSelected = (value) => {
+    selected.todo = value;
+    setselected({ ...selected });
+  };
   return (
     <div>
       <br />
